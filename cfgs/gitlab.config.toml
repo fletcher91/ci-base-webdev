@@ -1,0 +1,20 @@
+oncurrent = 2
+
+[[runners]]
+  name = "my-gitlab-runner"
+  url = "https://gitlab.com/ci"
+  token = "[GITLAB CI TOKEN]"
+  executor = "docker"
+  [runners.docker]
+    image = "fletcher91/ci-base-webdev:latest"
+    privileged = true
+    disable_cache = false
+    volumes = [
+      "/cache",
+      "/cache/ci/node_modules:/app/node_modules",
+      "/cache/ci/tmp:/app/tmp",
+      "/cache/ci/vendor/bundle:/app/vendor/bundle",
+      "/var/run/docker.sock:/var/run/docker.sock",
+    ]
+  [runners.cache]
+    Insecure = false
