@@ -54,7 +54,7 @@ RUN $HOME/.rbenv/bin/rbenv install $RUBY_VERSION && \
     $HOME/.rbenv/bin/rbenv global $RUBY_VERSION
 
 # Install Node
-ENV NODE_VERSION 4.4.5
+ENV NODE_VERSION 4.4.7
 RUN . $NVM_DIR/nvm.sh && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
