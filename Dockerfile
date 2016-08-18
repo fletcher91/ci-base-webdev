@@ -5,10 +5,13 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get clean -qq && \
     apt-get update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-get update
 RUN apt-get install -y \
-      bison build-essential curl git libgdbm3 libgdbm-dev \
-      libgsf-1-dev libncurses5-dev libpq-dev libqt5webkit5-dev \
-      libreadline6-dev libvips-dev qt5-default
+      bison build-essential curl g++ gcc git libc6-dev libgdbm3 \
+      libgdbm-dev libgsf-1-dev libncurses5-dev libpq-dev libqt5webkit5-dev \
+      libreadline6-dev libvips-dev make openjdk-7-jdk qt5-default
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -47,11 +50,27 @@ RUN echo ". ${NVM_DIR}/nvm.sh" > $HOME/.profile && \
     $NVM_DIR/install.sh && \
     . $HOME/.profile
 
+# Install Go
+ENV GOLANG_VERSION 1.7
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
+ENV GOLANG_DOWNLOAD_SHA256 702ad90f705365227e902b42d91dd1a40e48ca7f67a2f4b2fd052aaa4295cd95
+
+RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
+	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
+	&& tar -C /usr/local -xzf golang.tar.gz \
+	&& rm golang.tar.gz
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+
 
 # Install Ruby
 ENV RUBY_VERSION 2.3.1
 RUN $HOME/.rbenv/bin/rbenv install $RUBY_VERSION && \
     $HOME/.rbenv/bin/rbenv global $RUBY_VERSION
+
 
 # Install Node
 ENV NODE_VERSION 4.4.7
@@ -62,5 +81,5 @@ RUN . $NVM_DIR/nvm.sh && \
 ENV NODE_PATH ${NVM_DIR}/v${NODE_VERSION}/lib/node_modules
 ENV PATH ${NVM_DIR}/versions/node/v${NODE_VERSION}/bin:${PATH}
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir -p /go/src/app
+WORKDIR /go/src/app

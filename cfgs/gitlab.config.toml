@@ -11,9 +11,9 @@ oncurrent = 2
     disable_cache = false
     volumes = [
       "/cache",
-      "/cache/ci/node_modules:/app/node_modules",
-      "/cache/ci/tmp:/app/tmp",
-      "/cache/ci/vendor/bundle:/app/vendor/bundle",
+      "/cache/ci/node_modules:/go/src/app/node_modules",
+      "/cache/ci/tmp:/go/src/app/tmp",
+      "/cache/ci/vendor/bundle:/go/src/app/vendor/bundle",
       "/var/run/docker.sock:/var/run/docker.sock",
     ]
   [runners.cache]

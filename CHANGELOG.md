@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2016-08-18
+### Added
+- Added OpenJDK 7
+- Added Go 1.7
+
+### Changed
+- Changed default WORKDIR to `/go/src/app` to ease go environment setup
+
 ## [1.1.0] - 2016-08-15
 ### Added
 - Added WORKDIR `/app` for caching
