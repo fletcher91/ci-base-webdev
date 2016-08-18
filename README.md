@@ -10,6 +10,8 @@ Out of the box:
 - NVM
 - Latest Ruby (2.3.1)
 - Latest LTS Node.js (4.4.7)
+- Latest Golang (1.7.0)
+- OpenJDK 7
 - Libraries to build the most common gems & node packages
 
 
