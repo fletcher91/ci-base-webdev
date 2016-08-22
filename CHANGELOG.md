@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.1] - 2016-08-22
+### Changed
+- Preinstalled bundle, bundler
+
 ## [1.2.0] - 2016-08-18
 ### Added
 - Added OpenJDK 7

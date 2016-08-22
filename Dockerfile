@@ -70,7 +70,7 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 ENV RUBY_VERSION 2.3.1
 RUN $HOME/.rbenv/bin/rbenv install $RUBY_VERSION && \
     $HOME/.rbenv/bin/rbenv global $RUBY_VERSION
-
+RUN gem install bundle bundler --no-rdoc --no-ri
 
 # Install Node
 ENV NODE_VERSION 4.4.7

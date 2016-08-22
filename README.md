@@ -16,3 +16,6 @@ Out of the box:
 
 
 To use docker mount the image with `-v /var/run/docker.sock:/var/run/docker.sock` (see [this article](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/))
+
+
+Due to the way nvm is made, it isn't possible to directly execute nvm in Docker without creating a login shell first: `/bin/bash -l -c "nvm install x.y.z"`

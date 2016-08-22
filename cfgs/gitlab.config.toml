@@ -1,10 +1,11 @@
-oncurrent = 2
+concurrent = 2
 
 [[runners]]
   name = "my-gitlab-runner"
   url = "https://gitlab.com/ci"
   token = "[GITLAB CI TOKEN]"
   executor = "docker"
+  builds_dir = "/go/src/app"
   [runners.docker]
     image = "fletcher91/ci-base-webdev:latest"
     privileged = true
