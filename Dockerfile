@@ -7,11 +7,13 @@ RUN apt-get clean -qq && \
     apt-get update
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa
+RUN apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update
 RUN apt-get install -y \
       bison build-essential curl g++ gcc git libc6-dev libgdbm3 \
       libgdbm-dev libgsf-1-dev libncurses5-dev libpq-dev libqt5webkit5-dev \
-      libreadline6-dev libvips-dev make openjdk-7-jdk qt5-default
+      libreadline6-dev libvips-dev make openjdk-7-jdk qt5-default yarn
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
