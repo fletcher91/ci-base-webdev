@@ -44,7 +44,7 @@ RUN git clone --depth 1 -q https://github.com/rbenv/ruby-build.git $RBENV_DIR/pl
 
 # Install nvm
 ENV NVM_DIR /usr/local/.nvm
-ENV NVM_VER v0.31.3
+ENV NVM_VER v0.33.0
 RUN git clone --depth 1 --branch $NVM_VER https://github.com/creationix/nvm.git $NVM_DIR && \
     cd $NVM_DIR && \
     git checkout `git describe --abbrev=0 --tags`
@@ -75,7 +75,7 @@ RUN $HOME/.rbenv/bin/rbenv install $RUBY_VERSION && \
 RUN gem install bundle bundler --no-rdoc --no-ri
 
 # Install Node
-ENV NODE_VERSION 4.4.7
+ENV NODE_VERSION 6.9.5
 RUN . $NVM_DIR/nvm.sh && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
